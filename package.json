@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "jest",
-    "start": "node server.js",
+    "start": "node src/server.js",
     "watch": "nodemon src/server.js"
   },
   "keywords": [],
