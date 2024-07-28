@@ -62,11 +62,24 @@ async function convertingAdmin(username, password) {
   }
 }
 
+async function getUserDetailsByuserid(id) {
+  try {
+    const user = await UserDatabase.findOne({
+      id: id,
+    });
+    return user;
+  } catch (error) {
+    console.error("Error finding user by username and password:", error);
+    throw new Error("Database query failed");
+  }
+}
+
 export {
   getLatestId,
   ExistingMail,
   saveUser,
   ExistingUsername,
   findUserByusernameAndPassword,
-  convertingAdmin
+  convertingAdmin,
+  getUserDetailsByuserid
 };

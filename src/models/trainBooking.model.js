@@ -13,8 +13,12 @@ async function getLatestTrainBookingId() {
 }
 
 async function bookTrain(train, user_id, no_of_seats) {
-  const { train_id, arrival_time_at_source, arrival_time_at_destination } =
-    train;
+  const {
+    train_name,
+    train_id,
+    arrival_time_at_source,
+    arrival_time_at_destination,
+  } = train;
 
   let lastBookedSeat = train.lastBookedSeat || 0;
 
@@ -29,6 +33,7 @@ async function bookTrain(train, user_id, no_of_seats) {
   const booking = new TrainBookingDatabase({
     booking_id: (await getLatestTrainBookingId()) + 1,
     train_id,
+    train_name,
     user_id,
     no_of_seats,
     seat_numbers,
@@ -38,6 +43,7 @@ async function bookTrain(train, user_id, no_of_seats) {
 
   try {
     train.lastBookedSeat = lastBookedSeat;
+    train.available_seats -= no_of_seats;
     await train.save();
     const savedBooking = await booking.save();
     return savedBooking;

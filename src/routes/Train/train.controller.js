@@ -5,9 +5,11 @@ import {
   saveTrain,
 } from "../../models/train.model.js";
 import { bookTrain, findBookingById } from "../../models/trainBooking.model.js";
+import { getUserDetailsByuserid } from "../../models/user.model.js";
 
 async function Createtrain(req, res) {
   const {
+    user_id,
     train_name,
     source,
     destination,
@@ -16,7 +18,9 @@ async function Createtrain(req, res) {
     arrival_time_at_destination,
   } = req.body;
 
+
   if (
+    !user_id ||
     !train_name ||
     !source ||
     !destination ||
@@ -28,6 +32,16 @@ async function Createtrain(req, res) {
       msg: "Please fill all the required fields",
     });
   }
+
+
+  const adminUser=await getUserDetailsByuserid(user_id);
+  if (!adminUser.isAdmin) {
+    return res.status(401).json({
+      msg: "Only admin can create a train",
+    });
+  }
+
+
 
   await saveTrain(
     train_name,
