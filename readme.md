@@ -5,9 +5,9 @@
 
 API:-
 
-signup=>                            http://localhost:8000/signup   
-login=>                             http://localhost:8000/login   
-Add train =>                        http://localhost:8000/api/trains/create
-availability of train=>             http://localhost:8000/api/trains/availability?source=Howrah&destination=Chennai
-Book Train=>                        http://localhost:8000/api/trains/100005/book
-Finding details of your bookings=>  http://localhost:8000/api/trains/bookings/6000001
+signup=>                            http://localhost:8000/signup<br/>   
+login=>                             http://localhost:8000/login<br/>   
+Add train =>                        http://localhost:8000/api/trains/create<br/>
+availability of train=>             http://localhost:8000/api/trains/availability?source=Howrah&destination=Chennai<br/>
+Book Train=>                        http://localhost:8000/api/trains/100005/book<br/>
+Finding details of your bookings=>  http://localhost:8000/api/trains/bookings/6000001<br/>
